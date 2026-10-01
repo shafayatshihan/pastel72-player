@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Pastel 72 · video</title>
+<style>
+  html,body{margin:0;height:100%;background:#000;overflow:hidden}
+  iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
+  p{color:#aaa;font:14px -apple-system,system-ui,sans-serif;text-align:center;margin-top:40vh}
+</style>
+</head>
+<body>
+<script>
+  // Relay for Pastel 72: embeds one YouTube video so it can play inside the offline app on Android / iPadOS.
+  var q = new URLSearchParams(location.search);
+  var id = (q.get('v') || '').replace(/[^\w-]/g, '').slice(0, 11);
+  var t = parseInt(q.get('t') || '0', 10) || 0;
+  if (id.length === 11) {
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?start=' + t + '&autoplay=1&playsinline=1&rel=0&modestbranding=1';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';
+    f.allowFullscreen = true;
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    f.title = 'YouTube video';
+    document.body.appendChild(f);
+  } else {
+    document.body.innerHTML = '<p>No video selected.</p>';
+  }
+</script>
+</body>
+</html>
