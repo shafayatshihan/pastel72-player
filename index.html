@@ -19,7 +19,8 @@
   var t = parseInt(q.get('t') || '0', 10) || 0;
   if (id.length === 11) {
     var f = document.createElement('iframe');
-    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?start=' + t + '&autoplay=1&playsinline=1&rel=0&modestbranding=1';
+    var o = encodeURIComponent(location.origin);
+    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?start=' + t + '&autoplay=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1&origin=' + o + '&widget_referrer=' + o;
     f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';
     f.allowFullscreen = true;
     f.referrerPolicy = 'strict-origin-when-cross-origin';
